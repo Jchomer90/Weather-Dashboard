@@ -11,7 +11,13 @@ $("#searchCity").on("click", function(event) {
         url:queryURL+cityName+"&appid=513e25023118dcdae6ded6cbd2eb4069",
         method:"get"
     }).then(function(response){
-        console.log(response)
+        console.log(response);
+        var temp = ("Temperature: " + response.wind.deg + " degrees");
+        var wind = ("Wind speed: " + response.wind.speed + " MPH");
+        var humidity = ("Humidity: " + response.main.humidity + "%");
+        console.log(temp);
+        console.log(wind);
+        console.log(humidity);
         lat = response.coord.lat;
         lon = response.coord.lon;
         $.ajax({
@@ -19,6 +25,17 @@ $("#searchCity").on("click", function(event) {
             method:"get"
         }).then(function(response){
             console.log(response);
+            var uv = ("UV Index: " + response.current.uvi);
+            console.log(uv);
+
         })
+        // var displayWeather = $("#weatherDetails").empty();
+           
+
     })
 })
+
+// function displayWeather() {
+//     $("#weatherDetails").empty();
+
+// }
