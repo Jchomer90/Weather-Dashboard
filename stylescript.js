@@ -12,9 +12,12 @@ $("#searchCity").on("click", function(event) {
         method:"get"
     }).then(function(response){
         console.log(response);
-        var temp = ("Temperature: " + response.wind.deg + " degrees");
-        var wind = ("Wind speed: " + response.wind.speed + " MPH");
-        var humidity = ("Humidity: " + response.main.humidity + "%");
+        // $("<p>").text("Temperature: " + response.wind.deg + " degrees")
+        var temp = ((9/5) * response.main.temp - 459.67).toFixed(2);
+        temp = $("<p>").text("Temperature: " + temp + " degrees F");
+
+        var wind = $("<p>").text("Wind speed: " + response.wind.speed + " MPH");
+        var humidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
         console.log(temp);
         console.log(wind);
         console.log(humidity);
@@ -25,8 +28,21 @@ $("#searchCity").on("click", function(event) {
             method:"get"
         }).then(function(response){
             console.log(response);
-            var uv = ("UV Index: " + response.current.uvi);
+            var uv = $("<p>").text("UV Index: " + response.current.uvi);
+            
+            if (uv < 3.5) {
+                $(uv).css("color", "green");
+            }
+            else if (uv > 7) {
+                $(uv).css("color", "red");
+            }
+            else {
+                $(uv).css("color", "orange");
+            }
             console.log(uv);
+            $("#weatherDetails").empty();
+            $("#weatherDetails").append(cityName, temp, humidity, wind, uv);
+
 
         })
         // var displayWeather = $("#weatherDetails").empty();
