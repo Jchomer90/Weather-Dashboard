@@ -1,3 +1,11 @@
-/* .selector-for-some-widget {
-    box-sizing: content-box;
-  } BOX SIZING BOOTSTRAP*/
+#fiveDayRendered{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#header{
+  background-color: black;
+  color: white;
+  text-align: center;
+}
